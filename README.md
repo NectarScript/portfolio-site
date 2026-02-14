@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Website - Piyush Chiwande
 
-## Getting Started
+A cinematic, single-page scroll portfolio website built for an IT Engineering student, showcasing projects, skills, and professional journey with modern web technologies.
 
-First, run the development server:
+## 🚀 Live Demo
+[View Live Site](https://github.com/NectarScript/portfolio-site) *(Update with Vercel deployment link if available)*
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ✨ Features
+
+- **Cinematic Experience**: Immersive hero section with video background and animated text.
+- **Scrollytelling**: Smooth scroll animations and transitions powered by Framer Motion.
+- **Responsive Design**: Fully responsive layout optimized for all devices (Mobile, Tablet, Desktop).
+- **Projects Showcase**: Interactive project cards with hover effects and direct links to GitHub repositories.
+- **Journey Timeline**: Visual timeline of education and professional experience.
+- **Skills Visualization**: Categorized skills section with custom icons and gradients.
+- **Contact Form**: Functional contact section with direct email link.
+- **Social Links**: Integrated social media icons for LinkedIn, GitHub, and Email.
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Utilities**: `clsx`, `tailwind-merge`
+
+## 📦 Installation
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/NectarScript/portfolio-site.git
+    cd portfolio-site
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    # or
+    yarn install
+    # or
+    pnpm install
+    ```
+
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    # or
+    yarn dev
+    # or
+    pnpm dev
+    ```
+
+4.  **Open locally:**
+    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## 📂 Project Structure
+
+```
+portfolio-site/
+├── public/              # Static assets (images, videos)
+├── src/
+│   ├── app/             # Next.js App Router pages
+│   ├── components/      # React components
+│   │   └── ui/          # UI components (Hero, Projects, Skills, etc.)
+│   └── lib/             # Utility functions
+├── .gitignore           # Git ignore rules
+├── next.config.mjs      # Next.js configuration
+├── package.json         # Project dependencies and scripts
+├── tailwind.config.ts   # Tailwind CSS configuration
+└── tsconfig.json        # TypeScript configuration
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🤝 Contact
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+-   **Name**: Piyush Chiwande
+-   **Email**: [piyushchiwande19@gmail.com](mailto:piyushchiwande19@gmail.com)
+-   **LinkedIn**: [Profile](https://www.linkedin.com/in/piyush-chiwande-481875292/)
+-   **GitHub**: [NectarScript](https://github.com/NectarScript)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+*Built with ❤️ by Piyush Chiwande*
