@@ -13,7 +13,7 @@ const skillCategories = [
         bgImage: "/skills/salesforce.jpg",
     },
     {
-        title: "Programming",
+        title: "Programming Languages",
         icon: Code,
         skills: ["Java", "Python", "JavaScript"],
         gradient: "from-emerald-500 to-teal-500",
