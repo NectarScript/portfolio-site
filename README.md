@@ -3,7 +3,7 @@
 A cinematic, single-page scroll portfolio website built for an IT Engineering student, showcasing projects, skills, and professional journey with modern web technologies.
 
 ## 🚀 Live Demo
-[View Live Site](https://github.com/NectarScript/portfolio-site) *(Update with Vercel deployment link if available)*
+[View Live Site](https://portfolio-site-piyush-chiwande.vercel.app/) 
 
 ## ✨ Features
 
