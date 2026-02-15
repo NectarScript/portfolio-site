@@ -13,7 +13,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Cinematic Developer Portfolio",
+  title: "Piyush Chiwande | Engineering Student Portfolio",
   description: "A premium, cinematic developer portfolio.",
 };
 

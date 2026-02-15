@@ -3,12 +3,12 @@
 import { motion } from "framer-motion";
 
 const skills = [
-    { name: "Java", icon: "https://cdn.simpleicons.org/java/white" },
+    { name: "Java", icon: "/icons/java.svg" },
     { name: "Python", icon: "https://cdn.simpleicons.org/python/white" },
     { name: "JavaScript", icon: "https://cdn.simpleicons.org/javascript/white" },
     { name: "React", icon: "https://cdn.simpleicons.org/react/white" },
     { name: "Tailwind CSS", icon: "https://cdn.simpleicons.org/tailwindcss/white" },
-    { name: "Salesforce", icon: "https://cdn.simpleicons.org/salesforce/white" },
+    { name: "Salesforce", icon: "/icons/salesforce.svg" },
     { name: "Git", icon: "https://cdn.simpleicons.org/git/white" },
     { name: "Node.js", icon: "https://cdn.simpleicons.org/nodedotjs/white" },
 ];

@@ -38,7 +38,7 @@ const skillCategories = [
         icon: Database,
         skills: ["MySQL", "MongoDB", "Supabase"],
         gradient: "from-indigo-500 to-blue-500",
-        bgImage: "/skills/tools.jpg",
+        bgImage: "/skills/database.jpg",
     },
 ];
 
