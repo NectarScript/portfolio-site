@@ -1,8 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Section } from "./Section";
 import { Briefcase, Cloud, Brain, GraduationCap } from "lucide-react";
+import { useRef } from "react";
 
 const journeyItems = [
     {
@@ -29,50 +30,93 @@ const journeyItems = [
 ];
 
 export function Journey() {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start 80%", "end 20%"]
+    });
+
+    // Animate line height from top to bottom based on scroll
+    const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
     return (
-        <Section id="journey" className="bg-navy-900/50">
-            <div className="relative z-10">
+        <Section id="journey" className="bg-[#0a0a0a] py-[100px] relative overflow-hidden">
+            {/* Subtle background ambient glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none" />
+
+            <div className="relative z-10 max-w-[1100px] mx-auto px-[24px] md:px-[48px]">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="text-center mb-16"
+                    className="mb-20 text-center md:text-left"
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-heading">
+                    <span className="inline-block py-1 px-3 rounded-full bg-white/5 border border-white/10 text-cyan-400 text-sm font-medium mb-6 backdrop-blur-md">
+                        Experience & Education
+                    </span>
+                    <h2
+                        className="text-white mb-6 tracking-tight font-black text-4xl md:text-5xl"
+                    >
                         My Journey
                     </h2>
-                    <div className="w-20 h-1 bg-gradient-to-r from-electric-blue to-teal-500 mx-auto rounded-full mb-8" />
-
-                    <p className="text-electric-blue font-mono text-sm tracking-widest uppercase mb-4">
-                        B.Tech in Information Technology — Engineering Student
-                    </p>
-
-                    <p className="text-gray-400 text-lg leading-relaxed max-w-3xl mx-auto">
+                    <p
+                        className="text-neutral-400 mb-4 font-medium md:mx-0 mx-auto"
+                        style={{ fontSize: '16px', lineHeight: 1.8, maxWidth: '640px' }}
+                    >
                         I’m an Information Technology engineering student passionate about creating real-world software solutions. My work spans full-stack development, cloud platforms, and AI-powered applications. I focus on building practical systems that combine clean engineering with modern user experiences.
                     </p>
-                    <p className="text-gray-400 text-lg leading-relaxed max-w-3xl mx-auto mt-4">
+                    <p
+                        className="text-neutral-400 font-medium md:mx-0 mx-auto"
+                        style={{ fontSize: '16px', lineHeight: 1.8, maxWidth: '640px' }}
+                    >
                         Through internships and hands-on projects, I’ve developed experience in CRM platforms, intelligent applications, and scalable software design. I’m continuously learning and refining my skills to grow into a versatile software engineer.
                     </p>
                 </motion.div>
 
-                <div className="max-w-3xl mx-auto">
-                    {journeyItems.map((item, index) => (
-                        <div key={index} className="relative pl-8 md:pl-0 md:grid md:grid-cols-5 gap-8 mb-12 group">
-                            {/* Timeline Line */}
-                            <div className="absolute left-0 top-0 bottom-0 w-px bg-navy-700 md:left-1/5 group-last:bottom-auto group-last:h-full">
-                                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-navy-800 border-2 border-electric-blue group-hover:scale-125 transition-transform duration-300 shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
-                            </div>
+                <div className="max-w-4xl mx-auto relative pb-10" ref={containerRef}>
+                    {/* Background Line */}
+                    <div className="absolute left-[15px] top-4 bottom-0 w-[2px] bg-neutral-800 md:left-[20%] md:-translate-x-[1px]" />
 
-                            {/* Year/Date (Desktop: Left, Mobile: Hidden/Inline) */}
+                    {/* Animated Neon Gradient Line */}
+                    <motion.div
+                        className="absolute left-[15px] top-4 w-[2px] bg-gradient-to-b from-purple-500 via-blue-500 to-cyan-400 md:left-[20%] md:-translate-x-[1px] shadow-[0_0_15px_rgba(59,130,246,0.8)] z-0 rounded-full"
+                        style={{ height: lineHeight }}
+                    />
+
+                    {journeyItems.map((item, index) => (
+                        <div key={index} className="relative pl-12 md:pl-0 md:grid md:grid-cols-5 gap-8 mb-16 group">
+
+                            {/* Year/Date */}
                             <motion.div
                                 initial={{ opacity: 0, x: -20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="hidden md:block col-span-1 text-right pt-1 pr-8"
+                                className="hidden md:flex flex-col items-end col-span-1 text-right pt-[12px] pr-8"
                             >
-                                <span className="text-electric-blue font-mono text-sm font-bold tracking-wider">
+                                <span className="font-mono text-[14px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400">
+                                    {item.year}
+                                </span>
+                            </motion.div>
+
+                            {/* Timeline Node */}
+                            <div className="absolute left-[9px] top-[16px] md:left-[20%] transform md:-translate-x-[7px] w-[14px] h-[14px] flex items-center justify-center z-10">
+                                {/* Pulse effect */}
+                                <div className="absolute inset-0 rounded-full bg-blue-500 animate-ping opacity-60"></div>
+                                {/* Inner glowing node */}
+                                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-500 to-cyan-400 shadow-[0_0_15px_rgba(59,130,246,0.9)] border-2 border-[#0a0a0a]"></div>
+                            </div>
+
+                            {/* Mobile Year Badge (replaces year on small screens) */}
+                            <motion.div
+                                initial={{ opacity: 0, y: -5 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.3, delay: index * 0.1 }}
+                                className="block md:hidden mb-3"
+                            >
+                                <span className="inline-block font-mono text-[13px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-white/5 px-3 py-1 rounded-full border border-white/10">
                                     {item.year}
                                 </span>
                             </motion.div>
@@ -85,19 +129,24 @@ export function Journey() {
                                 transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
                                 className="col-span-4"
                             >
-                                <div className="bg-navy-800/50 backdrop-blur-sm p-6 rounded-2xl border border-white/5 hover:border-electric-blue/30 transition-all duration-300 hover:shadow-lg hover:shadow-electric-blue/5 hover:-translate-y-1">
-                                    <div className="flex items-center gap-3 mb-2 md:mb-4">
-                                        <span className="md:hidden text-xs text-electric-blue font-mono font-bold border border-electric-blue/20 px-2 py-1 rounded">
-                                            {item.year}
-                                        </span>
-                                        <item.icon className="w-5 h-5 text-teal-500 hidden md:block" />
-                                    </div>
+                                <div className="bg-white/5 backdrop-blur-md p-6 md:p-8 rounded-xl border border-white/10 hover:border-white/20 hover:bg-white/[0.07] shadow-[0_8px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_0_30px_rgba(59,130,246,0.2)] transition-all duration-300 hover:-translate-y-[4px] relative overflow-hidden group/card">
 
-                                    <h3 className="text-xl font-bold text-white mb-1 group-hover:text-electric-blue transition-colors">
-                                        {item.title}
-                                    </h3>
-                                    <p className="text-sm text-gray-400 mb-3">{item.company}</p>
-                                    <p className="text-gray-300 leading-relaxed text-sm">
+                                    {/* Card hover gradient highlight */}
+                                    <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-400 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300" />
+
+                                    <div className="flex items-start justify-between gap-4 mb-3">
+                                        <h3 className="text-xl md:text-2xl font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400">
+                                            {item.title}
+                                        </h3>
+                                        {/* Icon subtle display */}
+                                        <div className="p-2 bg-white/5 rounded-lg border border-white/10 text-cyan-400/80">
+                                            <item.icon className="w-5 h-5" />
+                                        </div>
+                                    </div>
+                                    <p className="text-blue-300/90 mb-4 font-medium text-[15px]">
+                                        {item.company}
+                                    </p>
+                                    <p className="text-neutral-400 font-medium text-[15px] leading-relaxed">
                                         {item.description}
                                     </p>
                                 </div>

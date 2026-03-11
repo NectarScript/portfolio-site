@@ -1,18 +1,21 @@
 import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
+import React from "react";
 
 interface SectionProps {
     children: ReactNode;
     className?: string;
     id?: string;
+    style?: React.CSSProperties;
 }
 
-export function Section({ children, className, id }: SectionProps) {
+export function Section({ children, className, id, style }: SectionProps) {
     return (
         <section
             id={id}
+            style={style}
             className={cn(
-                "relative w-full max-w-7xl mx-auto px-6 md:px-12 py-20 md:py-32",
+                "relative w-full overflow-hidden",
                 className
             )}
         >

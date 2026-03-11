@@ -1,16 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Piyush Chiwande | Engineering Student Portfolio",
@@ -23,10 +12,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${spaceGrotesk.variable} ${inter.variable} antialiased bg-background text-foreground`}
-      >
+    <html lang="en" data-theme="dark">
+      <body className="antialiased">
         {children}
       </body>
     </html>
