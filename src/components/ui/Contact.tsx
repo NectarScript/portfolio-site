@@ -2,10 +2,40 @@
 
 import { motion } from "framer-motion";
 import { Section } from "./Section";
-import { Github, Linkedin, Twitter, Mail } from "lucide-react";
+import { Github, Linkedin, Twitter, Mail, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import Link from "next/link";
+import { useState, FormEvent } from "react";
+
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/myknoppk";
 
 export function Contact() {
+    const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
+    async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        setStatus("submitting");
+
+        const form = e.currentTarget;
+        const data = new FormData(form);
+
+        try {
+            const res = await fetch(FORMSPREE_ENDPOINT, {
+                method: "POST",
+                body: data,
+                headers: { Accept: "application/json" },
+            });
+
+            if (res.ok) {
+                setStatus("success");
+                form.reset();
+            } else {
+                setStatus("error");
+            }
+        } catch {
+            setStatus("error");
+        }
+    }
+
     return (
         <Section
             id="contact"
@@ -33,13 +63,13 @@ export function Contact() {
                         className="text-[var(--color-text)] mb-6 font-black tracking-tight"
                         style={{ fontSize: '32px' }}
                     >
-                        Let's Build Something
+                        Let&apos;s Build Something
                     </h2>
                     <p
                         className="mb-8 mx-auto font-medium"
                         style={{ fontSize: '15px', color: 'var(--color-muted)', lineHeight: 1.8 }}
                     >
-                        I’m open to internships, collaborations, and engineering opportunities. Drop a message if you want to chat about potential projects.
+                        I&apos;m open to internships, collaborations, and engineering opportunities. Drop a message if you want to chat about potential projects.
                     </p>
                 </motion.div>
 
@@ -51,13 +81,15 @@ export function Contact() {
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="w-full"
                 >
-                    <form className="space-y-6 text-left">
+                    <form className="space-y-6 text-left" onSubmit={handleSubmit}>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-2">
                                 <label htmlFor="name" className="text-[13px] font-semibold tracking-wide text-[var(--color-muted)]">NAME</label>
                                 <input
                                     type="text"
                                     id="name"
+                                    name="name"
+                                    required
                                     className="w-full bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[var(--radius-sm)] px-4 py-3 text-[var(--color-text)] focus:outline-none focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)] transition-all font-medium"
                                     style={{ fontSize: '14px' }}
                                     placeholder="John Doe"
@@ -68,6 +100,8 @@ export function Contact() {
                                 <input
                                     type="email"
                                     id="email"
+                                    name="email"
+                                    required
                                     className="w-full bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[var(--radius-sm)] px-4 py-3 text-[var(--color-text)] focus:outline-none focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)] transition-all font-medium"
                                     style={{ fontSize: '14px' }}
                                     placeholder="john@example.com"
@@ -79,16 +113,42 @@ export function Contact() {
                             <label htmlFor="message" className="text-[13px] font-semibold tracking-wide text-[var(--color-muted)]">MESSAGE</label>
                             <textarea
                                 id="message"
+                                name="message"
                                 rows={4}
+                                required
                                 className="w-full bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[var(--radius-sm)] px-4 py-3 text-[var(--color-text)] focus:outline-none focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)] transition-all resize-none font-medium"
                                 style={{ fontSize: '14px' }}
                                 placeholder="Tell me about your project..."
                             />
                         </div>
 
-                        <button type="button" className="btn-primary w-fit mx-auto block mt-8 font-semibold">
-                            Send Message
+                        <button
+                            type="submit"
+                            disabled={status === "submitting"}
+                            className="btn-primary w-fit mx-auto block mt-8 font-semibold disabled:opacity-60 disabled:cursor-not-allowed"
+                        >
+                            {status === "submitting" ? (
+                                <span className="inline-flex items-center gap-2">
+                                    <Loader2 className="w-4 h-4 animate-spin" /> Sending...
+                                </span>
+                            ) : (
+                                "Send Message"
+                            )}
                         </button>
+
+                        {/* Status Messages */}
+                        {status === "success" && (
+                            <div className="flex items-center justify-center gap-2 mt-4 text-green-400 text-[14px] font-medium">
+                                <CheckCircle className="w-4 h-4" />
+                                Message sent! I&apos;ll get back to you soon.
+                            </div>
+                        )}
+                        {status === "error" && (
+                            <div className="flex items-center justify-center gap-2 mt-4 text-red-400 text-[14px] font-medium">
+                                <AlertCircle className="w-4 h-4" />
+                                Something went wrong. Please try again.
+                            </div>
+                        )}
                     </form>
                 </motion.div>
 

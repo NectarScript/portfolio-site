@@ -10,7 +10,7 @@ const journeyItems = [
         year: "2025",
         title: "AI Intern",
         company: "IT-Networkz Infosystems Pvt. Ltd.",
-        description: "Worked with Python libraries and AI tools in a supervised project environment.",
+        description: "Built AI-assisted tools using Python, worked with LLM pipelines and automation scripts in a team environment. Gained hands-on experience integrating AI capabilities into practical workflows.",
         icon: Brain,
     },
     {

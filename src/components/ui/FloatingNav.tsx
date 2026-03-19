@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 const navItems = [
     { name: "Home", href: "#", icon: Home },
     { name: "Journey", href: "#journey", icon: Briefcase },
-    { name: "Skills", href: "#skills", icon: Terminal },
+    { name: "Certifications", href: "#certifications", icon: Terminal },
     { name: "Work", href: "#work", icon: Code },
     { name: "Contact", href: "#contact", icon: Mail },
 ];

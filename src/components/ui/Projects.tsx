@@ -2,12 +2,25 @@
 
 import { motion } from "framer-motion";
 import { Section } from "./Section";
-import { Github, ExternalLink } from "lucide-react";
+import { Github } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "./Button";
 
 const projects = [
+    {
+        title: "PDF RAG AI Assistant",
+        description: "Upload any PDF and ask questions about it. The app retrieves relevant chunks using FAISS vector search and generates accurate answers via Groq's LLM API — no hallucinations, just document-grounded responses.",
+        tags: ["FastAPI", "Next.js 14", "FAISS", "Haystack", "Groq API", "Tailwind CSS", "shadcn/ui"],
+        features: [
+            "PDF upload with real-time document parsing",
+            "FAISS vector search for accurate chunk retrieval",
+            "Groq API (llama3-70b) for fast LLM responses",
+            "Clean Next.js 14 frontend with shadcn/ui components"
+        ],
+        image: "/pdf-rag.png",
+        links: { repo: "https://github.com/NectarScript/pdf-rag-ai" },
+    },
     {
         title: "ATS Resume Analyzer",
         description: "AI-powered web application that analyzes resumes against job descriptions using LLM scoring to provide actionable feedback.",
@@ -18,8 +31,8 @@ const projects = [
             "Actionable feedback generation",
             "Interactive Streamlit interface"
         ],
-        image: "/ats-resume.png", // Placeholder
-        links: { demo: "#", repo: "https://github.com/NectarScript/ats-resume-analyzer" },
+        image: "/ats-resume.png",
+        links: { repo: "https://github.com/NectarScript/ats-resume-analyzer" },
     },
     {
         title: "AI Chatbot",
@@ -31,8 +44,8 @@ const projects = [
             "Sentiment analysis for customer support",
             "Powered by local Phi model"
         ],
-        image: "/chatbot.png", // Placeholder
-        links: { demo: "#", repo: "https://github.com/NectarScript/chatbot-streamlit-ai" },
+        image: "/chatbot.png",
+        links: { repo: "https://github.com/NectarScript/chatbot-streamlit-ai" },
     },
     {
         title: "Java Analytics Dashboard",
@@ -45,7 +58,7 @@ const projects = [
             "Built entirely with Java 17 and Swing GUI"
         ],
         image: "/java-dashboard.png",
-        links: { demo: "#", repo: "https://github.com/NectarScript/java-analytics-dashboard" },
+        links: { repo: "https://github.com/NectarScript/java-analytics-dashboard" },
     },
 ];
 
@@ -131,13 +144,9 @@ export function Projects() {
 
                                 <div className="flex items-center gap-4 mt-auto">
                                     <Link
-                                        href={project.links.demo}
-                                        className="bg-white text-black hover:bg-gray-200 transition-colors rounded-lg px-6 py-2.5 flex items-center justify-center gap-2 font-semibold text-[14px]"
-                                    >
-                                        <ExternalLink className="w-4 h-4" /> Live
-                                    </Link>
-                                    <Link
                                         href={project.links.repo}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         className="bg-transparent text-white border border-[var(--color-border)] hover:bg-[var(--color-surface)] transition-colors rounded-lg px-6 py-2.5 flex items-center justify-center gap-2 font-semibold text-[14px]"
                                     >
                                         <Github className="w-4 h-4" /> Code

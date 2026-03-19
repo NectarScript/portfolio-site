@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import { ArrowDown, Linkedin, Github, Mail } from "lucide-react";
+import { ArrowDown, Linkedin, Github, Mail, Download } from "lucide-react";
 
 export function Hero() {
     const { scrollY } = useScroll();
@@ -111,7 +111,7 @@ export function Hero() {
                         lineHeight: 1.7
                     }}
                 >
-                    I'm Piyush, an IT engineering student focused on learning and building practical software projects. I work with Java, Python, and modern web technologies to develop clean, functional applications. Currently exploring cloud platforms and full-stack development through hands-on projects.
+                    I&apos;m Piyush, an IT engineering student from Nagpur building real projects across full-stack development, AI, and cloud platforms. I&apos;ve interned at two companies, shipped apps using Python, React, and LLMs, and I&apos;m focused on growing into a software engineer who actually builds things — not just talks about them.
                 </motion.p>
 
                 <motion.div
@@ -120,12 +120,21 @@ export function Hero() {
                     transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
                     className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
                 >
-                    <Link href="#work" className="btn-primary w-full sm:w-auto">
-                        View Work
+                    <Link href="#work" className="btn-ghost w-full sm:w-auto group/arrow">
+                        See My Projects <span className="inline-block transition-transform duration-200 group-hover/arrow:translate-x-[3px]">→</span>
                     </Link>
-                    <Link href="#contact" className="btn-ghost w-full sm:w-auto">
-                        Contact Me
+                    <Link href="#contact" className="btn-primary w-full sm:w-auto">
+                        Let&apos;s Talk
                     </Link>
+                    <a
+                        href="/resume.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        download
+                        className="hero-btn-resume w-full sm:w-auto"
+                    >
+                        <Download className="w-4 h-4" /> Download Resume
+                    </a>
                 </motion.div>
             </motion.div>
 
